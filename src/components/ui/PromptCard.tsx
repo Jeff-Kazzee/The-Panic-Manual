@@ -45,7 +45,7 @@ export function PromptCard({ title, prompt, whyItWorks, watchOutFor }: PromptCar
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 animate-check-bounce"
+                className="w-4 h-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -109,14 +109,14 @@ export function PromptCard({ title, prompt, whyItWorks, watchOutFor }: PromptCar
           className={`grid transition-all duration-300 ease-out ${expanded ? 'grid-rows-[1fr] mt-4' : 'grid-rows-[0fr]'}`}
         >
           <div className={`overflow-hidden ${expanded ? '' : 'invisible'}`}>
-            <p className="text-[var(--color-text-muted)] mb-4 animate-fade-in">{whyItWorks}</p>
+            <p className="text-[var(--color-text-muted)] mb-4">{whyItWorks}</p>
 
             {watchOutFor && watchOutFor.length > 0 && (
-              <div className="bg-[var(--color-accent)] bg-opacity-10 rounded-xl p-4 border border-[var(--color-accent)] border-opacity-20 animate-fade-in stagger-1">
+              <div className="bg-[var(--color-accent)] bg-opacity-10 rounded-xl p-4 border border-[var(--color-accent)] border-opacity-20">
                 <p className="font-semibold mb-2 text-[var(--color-accent)]">Watch Out For:</p>
                 <ul className="list-disc list-inside text-[var(--color-text-muted)] space-y-1">
                   {watchOutFor.map((item, index) => (
-                    <li key={index} className="animate-slide-in-right" style={{ animationDelay: `${index * 50}ms` }}>
+                    <li key={index}>
                       {item}
                     </li>
                   ))}

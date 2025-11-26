@@ -40,7 +40,7 @@ export function BreathBox({ message, title = 'Take a breath.' }: BreathBoxProps)
         >
           {title}
         </p>
-        <p className="text-text-muted text-lg md:text-xl leading-relaxed">
+        <p className="text-[var(--color-text-muted)] text-lg md:text-xl leading-relaxed">
           {message}
         </p>
       </div>

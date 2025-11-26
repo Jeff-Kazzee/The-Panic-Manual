@@ -136,7 +136,7 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
                 {checkedItems.has(item.id) && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <svg
-                      className="w-3 h-3 text-white animate-check-bounce"
+                      className="w-3 h-3 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

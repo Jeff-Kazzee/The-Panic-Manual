@@ -62,7 +62,7 @@ export default function Home() {
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
             The Panic Manual
           </h1>
-          <p className="text-text-muted text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[var(--color-text-muted)] text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
             AI-powered guides to fight back against confusing medical bills and collection letters
           </p>
         </header>
