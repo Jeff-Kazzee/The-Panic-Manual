@@ -5,15 +5,52 @@ import { BreathBox } from '@/components/ui/BreathBox'
 export default function Home() {
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen relative outline-none overflow-hidden">
-      {/* Background gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-primary), transparent)',
-          opacity: 0.15,
-        }}
-      />
+      {/* Hero background - multi-layered gradient */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Primary glow from top */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 100% 60% at 50% -10%, var(--color-primary), transparent 70%)',
+            opacity: 0.2,
+          }}
+        />
+        {/* Accent glow from corner */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 50% 50% at 90% 10%, var(--color-accent), transparent 60%)',
+            opacity: 0.15,
+          }}
+        />
+        {/* Secondary glow from left */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 40% 60% at 10% 30%, var(--color-primary), transparent 50%)',
+            opacity: 0.1,
+          }}
+        />
+        {/* Mesh gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              conic-gradient(from 180deg at 50% 50%,
+                transparent 0deg,
+                var(--color-primary) 60deg,
+                transparent 120deg,
+                var(--color-accent) 180deg,
+                transparent 240deg,
+                var(--color-primary) 300deg,
+                transparent 360deg
+              )
+            `,
+            opacity: 0.03,
+            filter: 'blur(80px)',
+          }}
+        />
+      </div>
 
       <div className="absolute top-4 right-4 z-10">
         <ThemeToggle />
