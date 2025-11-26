@@ -1,6 +1,11 @@
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8">
+    <main id="main-content" tabIndex={-1} className="min-h-screen flex flex-col items-center justify-center p-8 relative outline-none">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-center">
         The Panic Manual
       </h1>
