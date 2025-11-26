@@ -1,56 +1,79 @@
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { BreathBox } from '@/components/ui/BreathBox'
 
 export default function Home() {
   return (
-    <main id="main-content" tabIndex={-1} className="min-h-screen p-8 relative outline-none">
-      <div className="absolute top-4 right-4">
+    <main id="main-content" tabIndex={-1} className="min-h-screen relative outline-none overflow-hidden">
+      {/* Background gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: 'radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-primary), transparent)',
+          opacity: 0.15,
+        }}
+      />
+
+      <div className="absolute top-4 right-4 z-10">
         <ThemeToggle />
       </div>
 
-      <div className="max-w-4xl mx-auto pt-12">
-        <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-center">
-          The Panic Manual
-        </h1>
-        <p className="text-text-muted text-lg md:text-xl max-w-2xl mx-auto text-center mb-12">
-          AI-powered guides to fight back against confusing medical bills and collection letters
-        </p>
+      <div className="max-w-4xl mx-auto pt-16 md:pt-24 px-6 md:px-8 relative">
+        {/* Hero Section */}
+        <header className="text-center mb-16 animate-fade-in-up">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
+            The Panic Manual
+          </h1>
+          <p className="text-text-muted text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
+            AI-powered guides to fight back against confusing medical bills and collection letters
+          </p>
+        </header>
 
         {/* Breath Box */}
-        <div className="p-6 rounded-xl border-l-4 border-primary mb-12" style={{ backgroundColor: 'var(--color-breath)' }}>
-          <p className="font-display text-xl mb-2">Take a breath.</p>
-          <p className="text-text-muted">
-            You&apos;re not going to jail. This is solvable. Let&apos;s figure it out together.
-          </p>
+        <div className="mb-16 animate-fade-in-up stagger-1">
+          <BreathBox
+            message="You're not going to jail. This is solvable. Let's figure it out together."
+          />
         </div>
 
         {/* What landed in your mailbox? */}
-        <section aria-labelledby="mailbox-heading" className="mb-12">
-          <h2 id="mailbox-heading" className="font-display text-2xl font-semibold mb-6 text-center">
+        <section aria-labelledby="mailbox-heading" className="mb-16 animate-fade-in-up stagger-2">
+          <h2 id="mailbox-heading" className="font-display text-2xl md:text-3xl font-semibold mb-8 text-center">
             What landed in your mailbox?
           </h2>
           <nav aria-label="Guide categories">
-            <ul className="grid gap-4 md:grid-cols-2" data-testid="category-nav">
-              <li>
+            <ul className="grid gap-6 md:grid-cols-2" data-testid="category-nav">
+              <li className="animate-fade-in-up stagger-3">
                 <Link
                   href="/guides/medical-bills"
-                  className="block p-6 rounded-xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] hover:border-[var(--color-primary)] transition-colors text-center"
+                  className="group block p-8 rounded-2xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] hover-lift focus-ring text-center relative overflow-hidden"
                 >
-                  <span className="text-4xl block mb-3" aria-hidden="true">🏥</span>
+                  <span
+                    className="text-5xl block mb-4 transition-transform duration-300 group-hover:scale-110"
+                    aria-hidden="true"
+                  >
+                    🏥
+                  </span>
                   <span className="font-display text-xl font-semibold block mb-2">Medical Bills</span>
-                  <span className="text-[var(--color-text-muted)] text-sm">
+                  <span className="text-[var(--color-text-muted)] text-sm block">
                     Fight back against confusing hospital bills
                   </span>
                 </Link>
               </li>
-              <li>
+              <li className="animate-fade-in-up stagger-4">
                 <Link
                   href="/guides/debt-collection"
-                  className="block p-6 rounded-xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] hover:border-[var(--color-primary)] transition-colors text-center"
+                  className="group block p-8 rounded-2xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] hover-lift focus-ring text-center relative overflow-hidden"
                 >
-                  <span className="text-4xl block mb-3" aria-hidden="true">📬</span>
+                  <span
+                    className="text-5xl block mb-4 transition-transform duration-300 group-hover:scale-110"
+                    aria-hidden="true"
+                  >
+                    📬
+                  </span>
                   <span className="font-display text-xl font-semibold block mb-2">Debt Collection</span>
-                  <span className="text-[var(--color-text-muted)] text-sm">
+                  <span className="text-[var(--color-text-muted)] text-sm block">
                     Know your rights when collectors call
                   </span>
                 </Link>
@@ -60,16 +83,28 @@ export default function Home() {
         </section>
 
         {/* Quick links */}
-        <div className="text-center">
-          <Link href="/guides" className="text-[var(--color-primary)] hover:underline">
-            Browse all guides →
+        <div className="text-center pb-12 animate-fade-in-up stagger-5">
+          <Link
+            href="/guides"
+            className="inline-flex items-center gap-1 text-[var(--color-primary)] hover:underline focus-ring rounded px-2 py-1 transition-colors"
+          >
+            Browse all guides
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
           <span className="mx-4 text-[var(--color-text-muted)]">|</span>
-          <Link href="/prompts" className="text-[var(--color-primary)] hover:underline">
-            Prompt library →
+          <Link
+            href="/prompts"
+            className="inline-flex items-center gap-1 text-[var(--color-primary)] hover:underline focus-ring rounded px-2 py-1 transition-colors"
+          >
+            Prompt library
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
       </div>
     </main>
-  );
+  )
 }

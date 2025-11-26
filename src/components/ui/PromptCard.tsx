@@ -25,19 +25,27 @@ export function PromptCard({ title, prompt, whyItWorks, watchOutFor }: PromptCar
   }
 
   return (
-    <div className="rounded-xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] p-4 md:p-6">
+    <div className="prompt-card rounded-2xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] p-5 md:p-6 elevation-1 hover-lift transition-all duration-300">
       <div className="flex items-start justify-between gap-4 mb-4">
         <h3 className="font-display text-lg font-semibold">{title}</h3>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#2D5A78] dark:bg-[#2D5A78] text-white text-sm font-medium hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-background)]"
+          className={`
+            flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+            transition-all duration-200 press-effect focus-ring
+            ${
+              copied
+                ? 'bg-[var(--color-success)] text-white'
+                : 'bg-[var(--color-primary)] text-white hover:brightness-110'
+            }
+          `}
           aria-label={copied ? 'Copied to clipboard' : 'Copy prompt to clipboard'}
         >
           {copied ? (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
+                className="w-4 h-4 animate-check-bounce"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -70,20 +78,22 @@ export function PromptCard({ title, prompt, whyItWorks, watchOutFor }: PromptCar
         </button>
       </div>
 
-      <pre className="bg-[var(--color-background-200)] rounded-lg p-4 overflow-x-auto text-sm whitespace-pre-wrap font-body mb-4">
-        {prompt}
-      </pre>
+      <div className="relative">
+        <pre className="bg-[var(--color-background-200)] rounded-xl p-4 overflow-x-auto text-sm whitespace-pre-wrap font-body mb-4 border border-[var(--color-background-300)]">
+          {prompt}
+        </pre>
+      </div>
 
       <div className="border-t border-[var(--color-background-200)] pt-4">
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-2 text-[var(--color-primary)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] rounded"
+          className="flex items-center gap-2 text-[var(--color-primary)] hover:underline focus-ring rounded px-1 py-0.5"
           aria-expanded={expanded}
           aria-controls={contentId}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`w-4 h-4 transition-transform ${expanded ? 'rotate-90' : ''}`}
+            className={`w-4 h-4 transition-transform duration-200 ${expanded ? 'rotate-90' : ''}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -96,21 +106,24 @@ export function PromptCard({ title, prompt, whyItWorks, watchOutFor }: PromptCar
 
         <div
           id={contentId}
-          className={`overflow-hidden transition-all duration-200 ${expanded ? 'mt-4' : 'max-h-0'}`}
-          hidden={!expanded}
+          className={`grid transition-all duration-300 ease-out ${expanded ? 'grid-rows-[1fr] mt-4' : 'grid-rows-[0fr]'}`}
         >
-          <p className="text-[var(--color-text-muted)] mb-4">{whyItWorks}</p>
+          <div className={`overflow-hidden ${expanded ? '' : 'invisible'}`}>
+            <p className="text-[var(--color-text-muted)] mb-4 animate-fade-in">{whyItWorks}</p>
 
-          {watchOutFor && watchOutFor.length > 0 && (
-            <div className="bg-[var(--color-accent)] bg-opacity-10 rounded-lg p-4">
-              <p className="font-semibold mb-2 text-[var(--color-accent)]">Watch Out For:</p>
-              <ul className="list-disc list-inside text-[var(--color-text-muted)] space-y-1">
-                {watchOutFor.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+            {watchOutFor && watchOutFor.length > 0 && (
+              <div className="bg-[var(--color-accent)] bg-opacity-10 rounded-xl p-4 border border-[var(--color-accent)] border-opacity-20 animate-fade-in stagger-1">
+                <p className="font-semibold mb-2 text-[var(--color-accent)]">Watch Out For:</p>
+                <ul className="list-disc list-inside text-[var(--color-text-muted)] space-y-1">
+                  {watchOutFor.map((item, index) => (
+                    <li key={index} className="animate-slide-in-right" style={{ animationDelay: `${index * 50}ms` }}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

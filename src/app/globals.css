@@ -48,11 +48,357 @@ body {
   font-family: var(--font-body);
 }
 
-/* Reduced motion preference */
+/* ===== Animation System ===== */
+
+/* Animation timing custom properties */
+:root {
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Keyframe animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--color-primary);
+  }
+  50% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+@keyframes breathe-border {
+  0%, 100% {
+    border-color: var(--color-primary);
+    opacity: 0.7;
+  }
+  50% {
+    border-color: var(--color-primary);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes check-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progress-fill {
+  from { width: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fade-in var(--duration-normal) var(--ease-out-expo) both;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up var(--duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-fade-in-scale {
+  animation: fade-in-scale var(--duration-normal) var(--ease-spring) both;
+}
+
+.animate-breathe {
+  animation: breathe 4s var(--ease-in-out-sine) infinite;
+}
+
+.animate-breathe-border {
+  animation: breathe-border 4s var(--ease-in-out-sine) infinite;
+}
+
+.animate-check-bounce {
+  animation: check-bounce var(--duration-fast) var(--ease-spring);
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right var(--duration-normal) var(--ease-out-expo) both;
+}
+
+.animate-progress-fill {
+  animation: progress-fill var(--duration-slower) var(--ease-out-expo) both;
+}
+
+/* Staggered animation delays for lists */
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 150ms; }
+.stagger-4 { animation-delay: 200ms; }
+.stagger-5 { animation-delay: 250ms; }
+.stagger-6 { animation-delay: 300ms; }
+
+/* ===== Hover & Focus States ===== */
+
+/* Card lift effect */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              box-shadow var(--duration-normal) var(--ease-out-expo);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--color-primary);
+}
+
+:root .hover-lift:hover {
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15),
+              0 0 0 1px var(--color-primary);
+}
+
+/* Button press effect */
+.press-effect {
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.press-effect:active {
+  transform: scale(0.97);
+}
+
+/* Focus ring for accessibility */
+.focus-ring {
+  transition: box-shadow var(--duration-fast) var(--ease-out-expo);
+}
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-background),
+              0 0 0 4px var(--color-primary);
+}
+
+/* ===== Visual Depth & Texture ===== */
+
+/* Subtle noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.dark .noise-overlay::before {
+  opacity: 0.04;
+}
+
+/* Elevation system (dark mode friendly shadows) */
+.elevation-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.dark .elevation-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.elevation-2 {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .elevation-2 {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.elevation-3 {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .elevation-3 {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Gradient border glow */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--duration-normal) var(--ease-out-expo);
+}
+
+.glow-border:hover::after {
+  opacity: 0.6;
+  filter: blur(8px);
+}
+
+/* ===== Print Styles ===== */
+
+@media print {
+  /* Reset for print */
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Hide interactive elements */
+  button,
+  .theme-toggle,
+  nav,
+  .skip-link,
+  [role="navigation"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Show URLs after links */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  /* Prevent breaks inside important elements */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  p, li, blockquote, pre {
+    orphans: 3;
+    widows: 3;
+  }
+
+  pre, blockquote, .prompt-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    padding: 1rem;
+  }
+
+  /* Ensure prompt text is visible */
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Show checklist state */
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12pt;
+    height: 12pt;
+    border: 1pt solid #000;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8pt;
+  }
+
+  input[type="checkbox"]:checked::after {
+    content: '✓';
+    font-size: 10pt;
+    display: block;
+    text-align: center;
+    line-height: 12pt;
+  }
+
+  /* Breath box for print */
+  .breath-box {
+    border-left: 4pt solid #666 !important;
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+  }
+}
+
+/* ===== Reduced Motion Preference ===== */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+
+  .press-effect:active {
+    transform: none;
   }
 }
