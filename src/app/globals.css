@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Light Mode (explicit opt-in) */
+:root {
+  --color-background: #FDFCFA;
+  --color-background-50: #FDFCFA;
+  --color-background-100: #F7F5F2;
+  --color-background-200: #EFECEA;
+  --color-text: #1E1E1E;
+  --color-text-muted: #4A4A4A;
+  --color-breath: #EDF3F7;
+  --color-primary: #4A7C9B;
+  --color-accent: #D4764E;
+  --color-success: #5A8F5A;
+}
+
+/* Dark Mode (DEFAULT) */
+.dark {
+  --color-background: #0F1419;
+  --color-background-50: #0F1419;
+  --color-background-100: #1A2128;
+  --color-background-200: #252D35;
+  --color-background-300: #2F3942;
+  --color-text: #F5F5F5;
+  --color-text-muted: #A0A0A0;
+  --color-text-light: #707070;
+  --color-breath: #1A2835;
+  --color-primary: #6BA3C7;
+  --color-accent: #E8956A;
+  --color-success: #7AAD7A;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-primary: var(--color-primary);
+  --color-accent: var(--color-accent);
+  --color-breath: var(--color-breath);
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'Literata Variable', Georgia, serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
