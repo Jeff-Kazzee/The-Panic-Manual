@@ -150,7 +150,7 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
               <span
                 className={`transition-all duration-200 ${
                   checkedItems.has(item.id)
-                    ? 'line-through text-[var(--color-text-muted)] opacity-70'
+                    ? 'line-through text-[var(--color-text-muted)]'
                     : 'group-hover:text-[var(--color-primary)]'
                 }`}
               >

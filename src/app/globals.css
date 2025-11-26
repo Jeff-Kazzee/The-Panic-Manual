@@ -23,12 +23,12 @@
   --color-background-200: #252D35;
   --color-background-300: #2F3942;
   --color-text: #F5F5F5;
-  --color-text-muted: #A0A0A0;
-  --color-text-light: #707070;
+  --color-text-muted: #B8B8B8;
+  --color-text-light: #8A8A8A;
   --color-breath: #1A2835;
-  --color-primary: #6BA3C7;
+  --color-primary: #4A8CB8;
   --color-accent: #E8956A;
-  --color-success: #7AAD7A;
+  --color-success: #5DA05D;
 }
 
 @theme inline {
