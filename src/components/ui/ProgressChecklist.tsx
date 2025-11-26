@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useId } from 'react'
+import { useId, useSyncExternalStore, useCallback } from 'react'
 
 interface ChecklistItem {
   id: string
@@ -12,45 +12,68 @@ interface ProgressChecklistProps {
   items: ChecklistItem[]
 }
 
-export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
-  const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set())
-  const [mounted, setMounted] = useState(false)
-  const headingId = useId()
+// Subscribe to nothing for mounted check
+const emptySubscribe = () => () => {}
+const getClientSnapshot = () => true
+const getServerSnapshot = () => false
 
+// Create a localStorage store for a specific key
+function createLocalStorageStore(key: string) {
+  const listeners = new Set<() => void>()
+
+  const subscribe = (callback: () => void) => {
+    listeners.add(callback)
+    return () => listeners.delete(callback)
+  }
+
+  const getSnapshot = () => {
+    if (typeof window === 'undefined') return null
+    return localStorage.getItem(key)
+  }
+
+  const getServerSnapshotValue = () => null
+
+  const setValue = (value: string) => {
+    localStorage.setItem(key, value)
+    listeners.forEach((listener) => listener())
+  }
+
+  return { subscribe, getSnapshot, getServerSnapshot: getServerSnapshotValue, setValue }
+}
+
+export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
+  const headingId = useId()
   const storageKey = `progress-${guideId}`
 
-  useEffect(() => {
-    // Load from localStorage on mount
-    const saved = localStorage.getItem(storageKey)
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved)
-        setCheckedItems(new Set(parsed))
-      } catch {
-        // Invalid data, start fresh
-      }
-    }
-    setMounted(true)
-  }, [storageKey])
+  const mounted = useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot)
 
-  useEffect(() => {
-    // Save to localStorage when checkedItems changes
-    if (mounted) {
-      localStorage.setItem(storageKey, JSON.stringify([...checkedItems]))
-    }
-  }, [checkedItems, storageKey, mounted])
+  // Create store for this specific key
+  const store = createLocalStorageStore(storageKey)
 
-  const handleToggle = (itemId: string) => {
-    setCheckedItems((prev) => {
-      const next = new Set(prev)
+  const rawValue = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getServerSnapshot)
+
+  // Parse the stored value into a Set
+  const checkedItems: Set<string> = (() => {
+    if (!rawValue) return new Set()
+    try {
+      return new Set(JSON.parse(rawValue))
+    } catch {
+      return new Set()
+    }
+  })()
+
+  const handleToggle = useCallback(
+    (itemId: string) => {
+      const next = new Set(checkedItems)
       if (next.has(itemId)) {
         next.delete(itemId)
       } else {
         next.add(itemId)
       }
-      return next
-    })
-  }
+      store.setValue(JSON.stringify([...next]))
+    },
+    [checkedItems, store]
+  )
 
   const progress = items.length > 0 ? Math.round((checkedItems.size / items.length) * 100) : 0
   const isComplete = progress === 100
