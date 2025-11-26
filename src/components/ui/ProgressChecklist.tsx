@@ -94,6 +94,7 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
           aria-valuenow={progress}
           aria-valuemin={0}
           aria-valuemax={100}
+          aria-label={`Progress: ${progress}%`}
         />
       </div>
 

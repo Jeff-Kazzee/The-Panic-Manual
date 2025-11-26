@@ -8,8 +8,9 @@ export default function TestChecklist2Page() {
   ]
 
   return (
-    <main className="min-h-screen p-8 max-w-2xl mx-auto">
+    <main id="main-content" tabIndex={-1} className="min-h-screen p-8 max-w-2xl mx-auto outline-none">
       <h1 className="font-display text-3xl font-bold mb-8">Different Guide Checklist</h1>
+      <h2 className="sr-only">Checklist</h2>
       <ProgressChecklist guideId="test-guide-2" items={items} />
     </main>
   )

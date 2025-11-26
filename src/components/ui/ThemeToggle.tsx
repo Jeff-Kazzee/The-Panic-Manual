@@ -13,9 +13,10 @@ export function ThemeToggle() {
 
   if (!mounted) {
     // Return placeholder to prevent layout shift
+    // Using div instead of button to avoid focusable hidden element
     return (
-      <button
-        className="p-2 rounded-lg bg-background-200 w-10 h-10"
+      <div
+        className="p-2 rounded-lg bg-[var(--color-background-200)] w-10 h-10"
         aria-hidden="true"
       />
     )

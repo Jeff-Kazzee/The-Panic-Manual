@@ -30,7 +30,7 @@ export function PromptCard({ title, prompt, whyItWorks, watchOutFor }: PromptCar
         <h3 className="font-display text-lg font-semibold">{title}</h3>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--color-primary)] text-white text-sm font-medium hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-background)]"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#2D5A78] dark:bg-[#2D5A78] text-white text-sm font-medium hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-background)]"
           aria-label={copied ? 'Copied to clipboard' : 'Copy prompt to clipboard'}
         >
           {copied ? (

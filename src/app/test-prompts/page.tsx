@@ -2,8 +2,9 @@ import { PromptCard } from '@/components/ui/PromptCard'
 
 export default function TestPromptsPage() {
   return (
-    <main className="min-h-screen p-8 max-w-3xl mx-auto">
+    <main id="main-content" tabIndex={-1} className="min-h-screen p-8 max-w-3xl mx-auto outline-none">
       <h1 className="font-display text-3xl font-bold mb-8">Prompt Card Test Page</h1>
+      <h2 className="sr-only">Prompts</h2>
 
       <PromptCard
         title="Medical Bill Analysis"
