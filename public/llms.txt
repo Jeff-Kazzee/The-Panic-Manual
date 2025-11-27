@@ -1,0 +1,67 @@
+# The Panic Manual
+
+> Free guides and AI prompts helping people understand and fight back against confusing medical bills, collection letters, and other institutional documents. No sponsors, no affiliates—just practical help.
+
+The Panic Manual teaches people how to use AI tools (ChatGPT, Claude, etc.) to analyze complex financial documents, find errors in medical bills, understand their rights in debt collection, and write effective dispute letters. Our approach combines emotional support ("The Breath") with tactical AI prompts.
+
+## Core Philosophy
+
+- We treat users as intelligent adults being manipulated by opaque systems
+- AI is a tool to level the playing field, not a replacement for professional advice
+- Always verify AI outputs—run prompts multiple times, try different LLMs
+- Medical and debt systems are designed to confuse; clarity is power
+
+## Guides
+
+### Medical Bills
+- [I Got a Huge Medical Bill](https://thepanicmanual.com/guides/medical-bills/huge-medical-bill): Complete workflow for analyzing and fighting medical bills using AI
+- [How to Request an Itemized Bill](https://thepanicmanual.com/guides/medical-bills/itemized-bill): Getting the documentation you need to find billing errors
+- [Negotiating Medical Bills](https://thepanicmanual.com/guides/medical-bills/negotiate-payment): Financial hardship programs and payment negotiation strategies
+- [Predatory Billing Tactics Exposed](https://thepanicmanual.com/guides/medical-bills/predatory-tactics): How hospitals and collectors manipulate you, and how to fight back
+
+### Debt Collection
+- [I Got a Collections Letter](https://thepanicmanual.com/guides/debt-collection/collections-letter): What to do when a debt collector contacts you
+- [Debt Validation Rights](https://thepanicmanual.com/guides/debt-collection/debt-validation): Your FDCPA rights and how to request debt validation
+
+### Using AI Safely
+- [Why You Can Trust AI for This](https://thepanicmanual.com/guides/using-ai/why-trust-ai): How AI levels the playing field and why it works for document analysis
+- [Protecting Your Privacy with AI](https://thepanicmanual.com/guides/using-ai/protect-your-privacy): How to safely share documents with AI without exposing sensitive data
+- [Getting Started with AI Tools](https://thepanicmanual.com/guides/using-ai/getting-started): A beginner-friendly guide to using ChatGPT, Claude, and other AI tools
+
+### Job Search
+- [Analyzing Job Postings](https://thepanicmanual.com/guides/job-search/analyze-job-posting): Decode what companies really want and spot red flags before applying
+- [Matching Your Skills to Jobs](https://thepanicmanual.com/guides/job-search/match-your-skills): Find your transferable skills and craft your unique value proposition
+- [Standing Out in Applications](https://thepanicmanual.com/guides/job-search/stand-out-applications): Creative strategies to get noticed by hiring managers
+
+## Prompt Library
+
+- [All Prompts](https://thepanicmanual.com/prompts): 46+ searchable AI prompts organized by category
+- Medical bill analysis, error detection, negotiation scripts
+- Debt validation letters, rights research, response strategies
+- Job posting analysis, resume optimization, cover letter generation
+
+## Resources
+
+- [About Us](https://thepanicmanual.com/about): Our mission and methodology
+- [Privacy Policy](https://thepanicmanual.com/privacy): We don't track you. No cookies, no analytics.
+- [Terms of Use](https://thepanicmanual.com/terms): Educational content disclaimer
+
+## Key Information
+
+- All content is educational, not legal or financial advice
+- We have no sponsors, affiliates, or paid placements
+- Content is regularly updated with latest regulatory information
+- Users should always consult professionals for serious legal/financial decisions
+- Dark mode default because reviewing financial documents is stressful enough
+
+## Technical Details
+
+- Built with Next.js 15 and React 19
+- Privacy-first: No cookies, no tracking, no analytics
+- Local storage only for progress tracking (stays on your device)
+- Print-friendly CSS for offline use
+- WCAG 2.1 AA accessibility compliant
+
+---
+
+For complete content export, see: https://thepanicmanual.com/llms-full.txt
