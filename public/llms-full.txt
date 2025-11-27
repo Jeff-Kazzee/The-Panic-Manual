@@ -3,7 +3,7 @@
 > Free guides and AI prompts helping people understand and fight back against confusing medical bills, collection letters, and other institutional documents.
 
 This file contains the complete content of The Panic Manual for AI indexing purposes.
-Generated: 2025-11-27T05:06:05.217Z
+Generated: 2025-11-27T06:47:35.340Z
 
 ---
 
@@ -221,7 +221,7 @@ If they can't validate, they can't legally continue collecting.
 
 ---
 
-## Using Ai
+## Using AI
 
 ### Why You Can Trust AI for This
 

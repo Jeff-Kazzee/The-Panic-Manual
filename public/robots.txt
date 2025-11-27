@@ -3,8 +3,10 @@
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
 
-# Allow AI crawlers explicitly
+# Allow AI crawlers explicitly (they inherit Disallow from *)
 User-agent: GPTBot
 Allow: /
 
@@ -37,10 +39,6 @@ Allow: /
 
 User-agent: cohere-ai
 Allow: /
-
-# Standard exclusions
-Disallow: /api/
-Disallow: /_next/
 
 # Sitemap location
 Sitemap: https://thepanicmanual.com/sitemap.xml

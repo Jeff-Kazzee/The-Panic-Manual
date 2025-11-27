@@ -13,6 +13,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/terms',
   ]
 
+  // Guide categories
+  const guideCategories = [
+    'medical-bills',
+    'debt-collection',
+    'using-ai',
+    'job-search',
+  ]
+
   // Guide categories and their guides
   const guides = [
     // Medical Bills
@@ -42,6 +50,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: page === '' ? 'weekly' as const : 'monthly' as const,
       priority: page === '' ? 1 : page === '/guides' ? 0.9 : 0.7,
+    })),
+
+    // Guide category index pages
+    ...guideCategories.map((category) => ({
+      url: `${baseUrl}/guides/${category}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85,
     })),
 
     // Guide pages

@@ -115,13 +115,13 @@ export default function Home() {
         </section>
 
         {/* More ways we can help */}
-        <section aria-labelledby="more-help-heading" className="mb-16 animate-fade-in-up stagger-3">
+        <section aria-labelledby="more-help-heading" className="mb-16 animate-fade-in-up stagger-5">
           <h2 id="more-help-heading" className="font-display text-2xl md:text-3xl font-semibold mb-8 text-center">
             More ways we can help
           </h2>
           <nav aria-label="Additional guide categories">
             <ul className="grid gap-6 md:grid-cols-2" data-testid="additional-category-nav">
-              <li className="animate-fade-in-up stagger-4">
+              <li className="animate-fade-in-up stagger-6">
                 <Link
                   href="/guides/using-ai"
                   className="group block p-8 rounded-2xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] hover-lift focus-ring text-center relative overflow-hidden"
@@ -138,7 +138,7 @@ export default function Home() {
                   </span>
                 </Link>
               </li>
-              <li className="animate-fade-in-up stagger-5">
+              <li>
                 <Link
                   href="/guides/job-search"
                   className="group block p-8 rounded-2xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] hover-lift focus-ring text-center relative overflow-hidden"
@@ -160,7 +160,7 @@ export default function Home() {
         </section>
 
         {/* Quick links */}
-        <div className="text-center pb-12 animate-fade-in-up stagger-6">
+        <div className="text-center pb-12">
           <Link
             href="/guides"
             className="inline-flex items-center gap-1 text-[var(--color-primary)] hover:underline focus-ring rounded px-2 py-1 transition-colors"

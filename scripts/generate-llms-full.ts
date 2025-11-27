@@ -641,9 +641,18 @@ Generated: ${new Date().toISOString()}
 
 `
 
+  // Category title mapping for proper capitalization (handles acronyms like AI)
+  const categoryTitles: Record<string, string> = {
+    'medical-bills': 'Medical Bills',
+    'debt-collection': 'Debt Collection',
+    'using-ai': 'Using AI',
+    'job-search': 'Job Search',
+  }
+
   // Add all guides
   for (const [category, categoryGuides] of Object.entries(guides)) {
-    content += `## ${category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}\n\n`
+    const title = categoryTitles[category] || category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+    content += `## ${title}\n\n`
 
     for (const guide of categoryGuides) {
       content += `### ${guide.title}\n\n`
@@ -658,7 +667,8 @@ Generated: ${new Date().toISOString()}
 
   // Add all prompts
   for (const [category, categoryPrompts] of Object.entries(prompts)) {
-    content += `## ${category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Prompts\n\n`
+    const title = categoryTitles[category] || category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+    content += `## ${title} Prompts\n\n`
 
     for (const prompt of categoryPrompts) {
       content += `### ${prompt.title}\n\n`
@@ -705,9 +715,20 @@ For more information, visit: https://thepanicmanual.com
 }
 
 // Main execution
-const outputPath = path.join(process.cwd(), 'public', 'llms-full.txt')
-const content = generateLlmsFull()
+try {
+  const outputPath = path.join(process.cwd(), 'public', 'llms-full.txt')
+  const content = generateLlmsFull()
 
-fs.writeFileSync(outputPath, content, 'utf-8')
-console.log(`Generated llms-full.txt at ${outputPath}`)
-console.log(`File size: ${(content.length / 1024).toFixed(2)} KB`)
+  // Ensure public directory exists
+  const publicDir = path.join(process.cwd(), 'public')
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir, { recursive: true })
+  }
+
+  fs.writeFileSync(outputPath, content, 'utf-8')
+  console.log(`Generated llms-full.txt at ${outputPath}`)
+  console.log(`File size: ${(content.length / 1024).toFixed(2)} KB`)
+} catch (error) {
+  console.error('Failed to generate llms-full.txt:', error)
+  process.exit(1)
+}
