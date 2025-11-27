@@ -85,8 +85,8 @@ const categories: GuideCategory[] = [
   {
     slug: 'job-search',
     title: 'Job Search',
-    description: 'Use AI to find better jobs and stand out from the crowd',
-    icon: '💼',
+    description: 'Use AI to land your next opportunity',
+    icon: '🎯',
     guides: [
       {
         slug: 'analyze-job-posting',
