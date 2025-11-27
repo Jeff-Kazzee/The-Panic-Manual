@@ -23,8 +23,8 @@ test.describe('Theme Toggle', () => {
     const html = page.locator('html')
     await expect(html).toHaveClass(/dark/)
 
-    // Click toggle
-    const toggle = page.getByRole('button', { name: /switch to light mode/i })
+    // Click toggle (use first() since there are desktop and mobile toggles)
+    const toggle = page.getByRole('button', { name: /switch to light mode/i }).first()
     await toggle.click()
 
     // Should now be light mode (no dark class)
@@ -34,15 +34,15 @@ test.describe('Theme Toggle', () => {
   test('toggle switches from light to dark mode', async ({ page }) => {
     await page.goto('/')
 
-    // Switch to light first
-    const toggle = page.getByRole('button', { name: /switch to light mode/i })
+    // Switch to light first (use first() since there are desktop and mobile toggles)
+    const toggle = page.getByRole('button', { name: /switch to light mode/i }).first()
     await toggle.click()
 
     const html = page.locator('html')
     await expect(html).not.toHaveClass(/dark/)
 
     // Click toggle again to go back to dark
-    const darkToggle = page.getByRole('button', { name: /switch to dark mode/i })
+    const darkToggle = page.getByRole('button', { name: /switch to dark mode/i }).first()
     await darkToggle.click()
 
     await expect(html).toHaveClass(/dark/)
@@ -51,8 +51,8 @@ test.describe('Theme Toggle', () => {
   test('theme preference persists across page reload', async ({ page }) => {
     await page.goto('/')
 
-    // Switch to light mode
-    const toggle = page.getByRole('button', { name: /switch to light mode/i })
+    // Switch to light mode (use first() since there are desktop and mobile toggles)
+    const toggle = page.getByRole('button', { name: /switch to light mode/i }).first()
     await toggle.click()
 
     const html = page.locator('html')
@@ -68,8 +68,8 @@ test.describe('Theme Toggle', () => {
   test('theme preference persists across navigation', async ({ page }) => {
     await page.goto('/')
 
-    // Switch to light mode
-    const toggle = page.getByRole('button', { name: /switch to light mode/i })
+    // Switch to light mode (use first() since there are desktop and mobile toggles)
+    const toggle = page.getByRole('button', { name: /switch to light mode/i }).first()
     await toggle.click()
 
     const html = page.locator('html')
@@ -85,15 +85,15 @@ test.describe('Theme Toggle', () => {
   test('toggle button has correct ARIA labels', async ({ page }) => {
     await page.goto('/')
 
-    // In dark mode, button should say "Switch to light mode"
-    const darkModeToggle = page.getByRole('button', { name: /switch to light mode/i })
+    // In dark mode, button should say "Switch to light mode" (use first() for desktop toggle)
+    const darkModeToggle = page.getByRole('button', { name: /switch to light mode/i }).first()
     await expect(darkModeToggle).toBeVisible()
 
     // Click to switch to light
     await darkModeToggle.click()
 
     // In light mode, button should say "Switch to dark mode"
-    const lightModeToggle = page.getByRole('button', { name: /switch to dark mode/i })
+    const lightModeToggle = page.getByRole('button', { name: /switch to dark mode/i }).first()
     await expect(lightModeToggle).toBeVisible()
   })
 
@@ -103,11 +103,11 @@ test.describe('Theme Toggle', () => {
     const html = page.locator('html')
     await expect(html).toHaveClass(/dark/)
 
-    // Tab to the toggle and press Enter
+    // Tab to the toggle and press Enter (use first() for desktop toggle)
     await page.keyboard.press('Tab')
     await page.keyboard.press('Tab') // May need multiple tabs to reach toggle
 
-    const toggle = page.getByRole('button', { name: /switch to light mode/i })
+    const toggle = page.getByRole('button', { name: /switch to light mode/i }).first()
     await toggle.focus()
     await page.keyboard.press('Enter')
 

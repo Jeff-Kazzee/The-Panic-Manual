@@ -63,7 +63,7 @@ const categories: GuideCategory[] = [
     slug: 'using-ai',
     title: 'Using AI Safely',
     description: 'How to use AI tools effectively while protecting your privacy',
-    icon: '🤖',
+    icon: '🛡️',
     guides: [
       {
         slug: 'why-trust-ai',
