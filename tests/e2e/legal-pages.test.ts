@@ -7,9 +7,9 @@ test.describe('Legal & Info Pages', () => {
 
       await expect(page.getByRole('heading', { level: 1 })).toContainText('Privacy Policy')
       await expect(page.getByText('The Short Version')).toBeVisible()
-      // Use exact: true to avoid matching multiple elements
+      // Use exact: true to avoid matching multiple elements (text must match exactly)
       await expect(page.getByText("We don't track you", { exact: true })).toBeVisible()
-      await expect(page.getByText("We don't sell your data", { exact: true })).toBeVisible()
+      await expect(page.getByText("We don't sell your data (we don't have any to sell)", { exact: true })).toBeVisible()
       await expect(page.getByText("We don't show ads", { exact: true })).toBeVisible()
     })
 
