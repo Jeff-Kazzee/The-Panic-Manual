@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { BreathBox } from '@/components/ui/BreathBox'
 
 export default function Home() {
@@ -52,11 +51,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="absolute top-4 right-4 z-10">
-        <ThemeToggle />
-      </div>
-
-      <div className="max-w-4xl mx-auto pt-16 md:pt-24 px-6 md:px-8 relative">
+      <div className="max-w-4xl mx-auto pt-8 md:pt-16 px-6 md:px-8 relative">
         {/* Hero Section */}
         <header className="text-center mb-16 animate-fade-in-up">
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">

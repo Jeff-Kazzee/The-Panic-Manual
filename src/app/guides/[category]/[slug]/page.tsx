@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { PromptCard } from '@/components/ui/PromptCard'
 import { ProgressChecklist } from '@/components/ui/ProgressChecklist'
 import { PrintButton } from '@/components/ui/PrintButton'
@@ -892,10 +891,6 @@ export default async function GuidePage({ params }: PageProps) {
 
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen p-8 outline-none">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
-
       <div className="max-w-3xl mx-auto">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">

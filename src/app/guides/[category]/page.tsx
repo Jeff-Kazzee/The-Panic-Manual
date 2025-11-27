@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { notFound } from 'next/navigation'
 
 interface CategoryData {
@@ -71,10 +70,6 @@ export default async function CategoryPage({ params }: PageProps) {
 
   return (
     <main id="main-content" tabIndex={-1} className="min-h-screen p-8 outline-none">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
-
       <div className="max-w-4xl mx-auto">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">

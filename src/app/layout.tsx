@@ -3,6 +3,8 @@ import { ThemeProvider } from "next-themes";
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/literata";
 import "./globals.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "The Panic Manual",
@@ -34,7 +36,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-body antialiased bg-background text-text">
+      <body className="font-body antialiased bg-background text-text min-h-screen flex flex-col">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent-button)] focus:text-white focus:rounded-lg focus:outline-none text-[var(--color-text)]"
@@ -42,7 +44,11 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
+          <Header />
+          <div className="flex-1">
+            {children}
+          </div>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

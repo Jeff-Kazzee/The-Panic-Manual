@@ -4,10 +4,15 @@ on:
   pull_request:
     branches: [main, dev]
   push:
-    branches: [dev]
+    branches: [main, dev]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint-typecheck:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +24,24 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
 
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - name: Check bundle size
+        run: |
+          echo "Build output size:"
+          du -sh .next/ || true
+
   unit-tests:
+    name: Unit Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +53,13 @@ jobs:
       - run: npm run test:unit
 
   e2e-tests:
+    name: E2E Tests (${{ matrix.browser }})
     runs-on: ubuntu-latest
+    needs: [build]
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -39,13 +67,39 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
+      - name: Build
+        run: npm run build
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps ${{ matrix.browser }}
       - name: Run E2E tests
-        run: npm run test:e2e
+        run: npx playwright test --project=${{ matrix.browser }}
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.browser }}
+          path: playwright-report/
+          retention-days: 7
+
+  e2e-mobile:
+    name: E2E Tests (Mobile)
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium webkit
+      - name: Run Mobile E2E tests
+        run: npx playwright test --project=mobile-chrome --project=mobile-safari
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report-mobile
           path: playwright-report/
           retention-days: 7
