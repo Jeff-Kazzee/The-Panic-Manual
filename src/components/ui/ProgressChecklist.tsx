@@ -92,7 +92,7 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
 
   return (
     <div
-      className="rounded-xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] p-4 md:p-6"
+      className="rounded-2xl border border-[var(--color-background-200)] bg-[var(--color-background-100)] p-5 md:p-6 elevation-1"
       role="region"
       aria-labelledby={headingId}
     >
@@ -102,16 +102,16 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
         </h3>
         <span
           data-testid="progress-percentage"
-          className={`text-sm font-medium ${isComplete ? 'text-[var(--color-success)]' : 'text-[var(--color-text-muted)]'}`}
+          className={`text-sm font-medium transition-colors duration-300 ${isComplete ? 'text-[var(--color-success)]' : 'text-[var(--color-text-muted)]'}`}
         >
           {progress}%
         </span>
       </div>
 
       {/* Progress bar */}
-      <div className="h-2 bg-[var(--color-background-200)] rounded-full mb-4 overflow-hidden">
+      <div className="h-3 bg-[var(--color-background-200)] rounded-full mb-5 overflow-hidden">
         <div
-          className="h-full bg-[var(--color-primary)] transition-all duration-300 rounded-full"
+          className="h-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-full transition-all duration-500 ease-out"
           style={{ width: `${progress}%` }}
           role="progressbar"
           aria-valuenow={progress}
@@ -123,16 +123,37 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
 
       {/* Checklist items */}
       <ul className="space-y-2">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li key={item.id}>
-            <label className="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-[var(--color-background-200)] transition-colors">
-              <input
-                type="checkbox"
-                checked={checkedItems.has(item.id)}
-                onChange={() => handleToggle(item.id)}
-                className="w-5 h-5 rounded border-2 border-[var(--color-background-300)] text-[var(--color-primary)] focus:ring-[var(--color-primary)] focus:ring-offset-[var(--color-background)] cursor-pointer"
-              />
-              <span className={checkedItems.has(item.id) ? 'line-through text-[var(--color-text-muted)]' : ''}>
+            <label className="flex items-center gap-3 cursor-pointer p-3 rounded-xl hover:bg-[var(--color-background-200)] transition-all duration-200 group">
+              <div className="relative flex-shrink-0">
+                <input
+                  type="checkbox"
+                  checked={checkedItems.has(item.id)}
+                  onChange={() => handleToggle(item.id)}
+                  className="w-5 h-5 rounded-md border-2 border-[var(--color-background-300)] text-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-background)] cursor-pointer transition-all duration-200"
+                />
+                {checkedItems.has(item.id) && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+              <span
+                className={`transition-all duration-200 ${
+                  checkedItems.has(item.id)
+                    ? 'line-through text-[var(--color-text-muted)]'
+                    : 'text-[var(--color-text)] group-hover:text-[var(--color-primary)]'
+                }`}
+              >
                 {item.label}
               </span>
             </label>
@@ -142,7 +163,7 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
 
       {/* Completion message */}
       {isComplete && (
-        <div className="mt-4 p-4 bg-[var(--color-success)] bg-opacity-10 rounded-lg text-center">
+        <div className="mt-5 p-4 bg-[var(--color-success)] bg-opacity-10 rounded-xl text-center border border-[var(--color-success)] border-opacity-20 animate-fade-in-scale">
           <p className="text-[var(--color-success)] font-semibold">
             🎉 Complete! Great work taking control of your situation.
           </p>

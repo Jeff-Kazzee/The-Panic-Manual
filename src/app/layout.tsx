@@ -37,7 +37,7 @@ export default function RootLayout({
       <body className="font-body antialiased bg-background text-text">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-white focus:rounded-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent-button)] focus:text-white focus:rounded-lg focus:outline-none text-[var(--color-text)]"
         >
           Skip to main content
         </a>
