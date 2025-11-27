@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test'
 
+// Clipboard permissions only work in Chromium
+const chromiumOnly = test.extend({})
+chromiumOnly.skip(({ browserName }) => browserName !== 'chromium', 'Clipboard tests only run on Chromium')
+
 test.describe('Story 5.3: Prompt Library Journey', () => {
   test('prompt library page lists all categories', async ({ page }) => {
     await page.goto('/prompts')
@@ -103,8 +107,8 @@ test.describe('Story 5.3: Prompt Library Journey', () => {
     await expect(page.getByTestId('prompts-list')).toBeVisible()
   })
 
-  test('copy prompt from library page', async ({ page, context }) => {
-    // Grant clipboard permissions
+  chromiumOnly('copy prompt from library page', async ({ page, context }) => {
+    // Grant clipboard permissions (Chromium only)
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
 
     await page.goto('/prompts')

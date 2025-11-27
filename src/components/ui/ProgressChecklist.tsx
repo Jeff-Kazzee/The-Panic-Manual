@@ -123,7 +123,7 @@ export function ProgressChecklist({ guideId, items }: ProgressChecklistProps) {
 
       {/* Checklist items */}
       <ul className="space-y-2">
-        {items.map((item, index) => (
+        {items.map((item) => (
           <li key={item.id}>
             <label className="flex items-center gap-3 cursor-pointer p-3 rounded-xl hover:bg-[var(--color-background-200)] transition-all duration-200 group">
               <div className="relative flex-shrink-0">

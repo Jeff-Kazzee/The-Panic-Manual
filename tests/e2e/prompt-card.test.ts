@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test'
 
+// Clipboard permissions only work in Chromium
+const chromiumOnly = test.extend({})
+chromiumOnly.skip(({ browserName }) => browserName !== 'chromium', 'Clipboard tests only run on Chromium')
+
 test.describe('PromptCard', () => {
   test('copy button is visible on prompt card', async ({ page }) => {
     await page.goto('/test-prompts')
@@ -8,8 +12,8 @@ test.describe('PromptCard', () => {
     await expect(copyButton).toBeVisible()
   })
 
-  test('clicking copy writes prompt to clipboard', async ({ page, context }) => {
-    // Grant clipboard permissions
+  chromiumOnly('clicking copy writes prompt to clipboard', async ({ page, context }) => {
+    // Grant clipboard permissions (Chromium only)
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
 
     await page.goto('/test-prompts')
@@ -22,7 +26,7 @@ test.describe('PromptCard', () => {
     expect(clipboardText).toContain('Analyze this medical bill')
   })
 
-  test('copy success feedback is shown', async ({ page, context }) => {
+  chromiumOnly('copy success feedback is shown', async ({ page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
 
     await page.goto('/test-prompts')
@@ -57,7 +61,7 @@ test.describe('PromptCard', () => {
     await expect(whySection).not.toBeVisible()
   })
 
-  test('copy button is keyboard accessible with Enter', async ({ page, context }) => {
+  chromiumOnly('copy button is keyboard accessible with Enter', async ({ page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
 
     await page.goto('/test-prompts')
@@ -70,7 +74,7 @@ test.describe('PromptCard', () => {
     await expect(page.getByText(/copied/i)).toBeVisible()
   })
 
-  test('copy button is keyboard accessible with Space', async ({ page, context }) => {
+  chromiumOnly('copy button is keyboard accessible with Space', async ({ page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
 
     await page.goto('/test-prompts')
