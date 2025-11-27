@@ -35,8 +35,8 @@ export function PromptCard({ title, prompt, whyItWorks, watchOutFor }: PromptCar
             transition-all duration-200 press-effect focus-ring
             ${
               copied
-                ? 'bg-[var(--color-success)] text-white'
-                : 'bg-[var(--color-primary)] text-white hover:brightness-110'
+                ? 'bg-[var(--color-success-button)] text-white'
+                : 'bg-[var(--color-primary-button)] text-white hover:brightness-110'
             }
           `}
           aria-label={copied ? 'Copied to clipboard' : 'Copy prompt to clipboard'}

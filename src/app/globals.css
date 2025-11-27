@@ -11,8 +11,11 @@
   --color-text-muted: #4A4A4A;
   --color-breath: #EDF3F7;
   --color-primary: #3D6B87;
+  --color-primary-button: #2D5A78;
   --color-accent: #C65F37;
+  --color-accent-button: #A34D2C;
   --color-success: #4A7F4A;
+  --color-success-button: #3A6B3A;
 }
 
 /* Dark Mode (DEFAULT) */
@@ -27,8 +30,11 @@
   --color-text-light: #9A9A9A;
   --color-breath: #1A2835;
   --color-primary: #5BA8D6;
+  --color-primary-button: #2D6A8A;
   --color-accent: #E8956A;
-  --color-success: #6DB86D;
+  --color-accent-button: #B86340;
+  --color-success: #3D8A3D;
+  --color-success-button: #2D6B2D;
 }
 
 @theme inline {
@@ -46,6 +52,15 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-body);
+}
+
+/* Ensure links have accessible colors */
+a {
+  color: var(--color-primary);
+}
+
+a:visited {
+  color: var(--color-primary);
 }
 
 /* ===== Animation System ===== */

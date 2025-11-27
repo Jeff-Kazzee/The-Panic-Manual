@@ -242,7 +242,7 @@ export default function PromptsPage() {
                   onClick={() => setSelectedCategory(category.slug)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     selectedCategory === category.slug
-                      ? 'bg-[var(--color-primary)] text-white'
+                      ? 'bg-[var(--color-primary-button)] text-white'
                       : 'bg-[var(--color-background-200)] hover:bg-[var(--color-background-300)]'
                   }`}
                   aria-pressed={selectedCategory === category.slug}
