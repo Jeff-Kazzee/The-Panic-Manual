@@ -33,6 +33,11 @@ const categoriesData: Record<string, CategoryData> = {
         title: 'Negotiating Medical Bills',
         description: 'Financial hardship programs and payment negotiation strategies',
       },
+      {
+        slug: 'predatory-tactics',
+        title: 'Predatory Billing Tactics Exposed',
+        description: 'How hospitals and collectors manipulate you, and how to fight back',
+      },
     ],
   },
   'debt-collection': {
@@ -49,6 +54,50 @@ const categoriesData: Record<string, CategoryData> = {
         slug: 'debt-validation',
         title: 'Debt Validation Rights',
         description: 'Your FDCPA rights and how to request debt validation',
+      },
+    ],
+  },
+  'using-ai': {
+    title: 'Using AI Safely',
+    description: 'Protect your privacy while getting AI help with your documents',
+    icon: '🛡️',
+    guides: [
+      {
+        slug: 'why-trust-ai',
+        title: 'Why You Can Trust AI for This',
+        description: 'How AI levels the playing field and why it works for document analysis',
+      },
+      {
+        slug: 'protect-your-privacy',
+        title: 'Protecting Your Privacy with AI',
+        description: 'How to safely share documents with AI without exposing sensitive data',
+      },
+      {
+        slug: 'getting-started',
+        title: 'Getting Started with AI Tools',
+        description: 'A beginner-friendly guide to using ChatGPT, Claude, and other AI tools',
+      },
+    ],
+  },
+  'job-search': {
+    title: 'Job Search',
+    description: 'Use AI to land your next opportunity',
+    icon: '🎯',
+    guides: [
+      {
+        slug: 'analyze-job-posting',
+        title: 'Analyzing Job Postings',
+        description: 'Decode what companies really want and spot red flags before applying',
+      },
+      {
+        slug: 'match-your-skills',
+        title: 'Matching Your Skills to Jobs',
+        description: 'Find your transferable skills and craft your unique value proposition',
+      },
+      {
+        slug: 'stand-out-applications',
+        title: 'Standing Out in Applications',
+        description: 'Creative strategies to get noticed by hiring managers',
       },
     ],
   },
